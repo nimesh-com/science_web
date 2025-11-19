@@ -5,6 +5,17 @@
     <div class="card-header">
         <h3 class="card-title">Create Class</h3>
     </div>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <!-- /.card-header -->
     <!-- form start -->
     <form action="{{ route('classes.store') }}" method="POST" autocomplete="off">
@@ -69,16 +80,16 @@
 
             <div class="form-group">
                 <label for="date">Start Date</label>
-                <input type="date" name="date" class="form-control @error('date') is-invalid @enderror" id="date" value="{{ old('date') }}">
-                @error('date')
+                <input type="date" name="start_date" class="form-control @error('date') is-invalid @enderror" id="date" value="{{ old('date') }}">
+                @error('start_date')
                 <span class="text-danger small">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="time">Start Time</label>
-                <input type="time" name="time" class="form-control @error('time') is-invalid @enderror" id="time" value="{{ old('time') }}">
-                @error('time')
+                <input type="time" name="start_time" class="form-control @error('time') is-invalid @enderror" id="time" value="{{ old('time') }}">
+                @error('start_time')
                 <span class="text-danger small">{{ $message }}</span>
                 @enderror
             </div>

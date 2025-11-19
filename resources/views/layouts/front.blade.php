@@ -32,7 +32,7 @@
 </head>
 
 <body>
-  
+
 
 
     <!-- Navbar Start -->
@@ -58,33 +58,29 @@
                 </div>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
                 @auth
-                    <a href="{{ url('/student/LMS') }}" class="nav-item nav-link"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a href="{{ url('/student/LMS') }}" class="nav-item nav-link"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
                 @else
-                    <a href="{{ route('login') }}" class="nav-item nav-link"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
+                <a href="{{ route('login') }}" class="nav-item nav-link"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
                 @endauth
             </div>
             @auth
-                <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                    @csrf
-                    <button type="submit" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Logout<i class="fas fa-sign-out-alt ms-3"></i></button>
-                </form>
+            <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                @csrf
+                <button type="submit" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Logout<i class="fas fa-sign-out-alt ms-3"></i></button>
+            </form>
             @else
-                <a href="https://wa.me/94779719469?text=Hello%20Sir,%20I%20want%20to%20join%20your%20Science%20Class" target="_blank" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fab fa-whatsapp ms-3"></i></a>
+            <a href="https://wa.me/94779719469?text=Hello%20Sir,%20I%20want%20to%20join%20your%20Science%20Class" target="_blank" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fab fa-whatsapp ms-3"></i></a>
             @endauth
         </div>
     </nav>
     <!-- Navbar End -->
 
+    <!-- Content -->
+  
+        @yield('content')
 
-    <!-- Carousel Start -->
-@if(!request()->is('student*'))
-    @include('student.partials.carousel')
-@endif
+    <!-- End Content -->
 
-    <!-- Carousel End -->
-
-
-    @yield('content')
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -185,4 +181,3 @@
 </body>
 
 </html>
-

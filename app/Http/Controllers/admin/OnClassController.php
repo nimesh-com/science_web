@@ -39,12 +39,11 @@ class OnClassController extends Controller
             'mode'=>'required',
             'start_date'=>'required|date',
             'start_time'=>'required',
-            'status'=>'required',
         ]);
 
         OnClass::create($request->all());
 
-        return redirect()->route('olc.index')
+        return redirect()->route('classes.index')
             ->with('success', 'Class created successfully!');
     }
 

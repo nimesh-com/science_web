@@ -41,34 +41,7 @@
                         <h5 class="card-title mb-0">Announcements</h5>
                     </div>
                     <div class="card-body">
-                        @if(session('status'))
-                            <div class="alert alert-success">{{ session('status') }}</div>
-                        @endif
-
-                        @if(isset($announcements) && $announcements->count() > 0)
-                            @foreach($announcements as $announcement)
-                                <div class="alert alert-info" role="alert">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <strong>{{ $announcement->title }}</strong>
-                                            <div class="small text-muted">{{ $announcement->created_at->format('M d, Y') }}</div>
-                                        </div>
-                                        @if(!empty($announcement->link))
-                                            <div><a href="{{ $announcement->link }}" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">Read</a></div>
-                                        @endif
-                                    </div>
-                                    <div class="mt-2">{{ Str::limit($announcement->message, 300) }}</div>
-                                </div>
-                            @endforeach
-
-                            @if(method_exists($announcements, 'links'))
-                                <div class="mt-3">
-                                    {{ $announcements->links() }}
-                                </div>
-                            @endif
-                        @else
-                            <p>No announcements at this time.</p>
-                        @endif
+                        <p class="text-center">No any announcements yet</p>
                     </div>
                 </div>
             </section>
