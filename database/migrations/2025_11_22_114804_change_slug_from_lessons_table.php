@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('on_classes', function (Blueprint $table) {
-            $table->string('status')->default('active')->change();
+        Schema::table('lessons', function (Blueprint $table) {
+            $table->string('slug')->nullable()->change();
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('on_clasess', function (Blueprint $table) {
+        Schema::table('lessons', function (Blueprint $table) {
             //
         });
     }

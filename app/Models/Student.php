@@ -14,8 +14,9 @@ class Student extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function onClasses()
-    {
-        return $this->belongsToMany(OnClass::class, 'student_on_class', 'student_id', 'on_class_id');
-    }
+  public function onClasses()
+{
+    return $this->hasMany(OnClass::class, 'grade', 'grade');
+}
+
 }

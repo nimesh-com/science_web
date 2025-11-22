@@ -1,4 +1,3 @@
-
 @extends('layouts.front')
 
 @section('content')
@@ -56,27 +55,26 @@
                     <div class="card-body">
                         <div class="row">
                             @if(isset($classes) && $classes->count() > 0)
-                                @foreach($classes as $class)
-                                    <div class="col-md-4 mb-4">
-                                        <div class="card h-100">
-                                            <div class="card-body d-flex flex-column">
-                                                <h5 class="card-title">{{ $class->name }}</h5>
-                                                <p class="card-text text-truncate">{{ Str::limit($class->description, 120) }}</p>
-                                                <p class="card-text mt-auto"><small class="text-muted">Instructor: {{ $class->instructor ?? 'TBA' }}</small></p>
-                                                <div class="mt-2">
-                                                    <!-- Replace route name with your actual route -->
-                                                    <a href="" class="btn btn-primary btn-sm">Join Class</a>
-                                                    <a href=" class="btn btn-outline-secondary btn-sm">Details</a>
-                                                </div>
-                                            </div>
+                            @foreach($classes as $class)
+                            <div class="col-md-4 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">{{ $class->name }}</h5>
+                                        <p class="card-text text-truncate">{{ Str::limit($class->description, 120) }}</p>
+                                        <p class="card-text mt-auto"><small class="text-muted">Instructor: {{ $class->instructor ?? 'TBA' }}</small></p>
+                                        <div class="mt-2">
+                                            <!-- Replace route name with your actual route -->
+                                            <a href="{{$class->link}}" target="_blank" class="btn btn-primary btn-sm">Join Class</a>
                                         </div>
                                     </div>
-                                @endforeach
-                            @else
-                                <div class="col-12">
-                                    <p>You have not joined any classes yet.</p>
-                                    <a href="" class="btn btn-sm btn-primary">Browse Classes</a>
                                 </div>
+                            </div>
+                            @endforeach
+                            @else
+                            <div class="col-12">
+                                <p>You have not joined any classes yet.</p>
+                                <a href="" class="btn btn-sm btn-primary">Browse Classes</a>
+                            </div>
                             @endif
                         </div>
                     </div>
@@ -91,25 +89,58 @@
                     </div>
                     <div class="card-body">
                         @if(isset($materials) && $materials->count() > 0)
-                            <ul class="list-group">
-                                @foreach($materials as $material)
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <strong>{{ $material->title }}</strong>
-                                            <div class="small text-muted">{{ $material->created_at->format('M d, Y') }}</div>
-                                        </div>
-                                        <div>
-                                            <a href=" class="btn btn-sm btn-outline-primary">Download</a>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
+                        <ul class="list-group">
+                            @foreach($materials as $material)
+                            <li class="list-group-item">
+                                <strong>{{ $material->name }}</strong>
+                                <div class="small text-muted">{{ $material->created_at->format('M d, Y') }}</div>
+
+                                @if($material->slug)
+                                <!-- Toggle Video Button -->
+                                <button class="btn btn-primary btn-sm mt-2" onclick="toggleVideo(this, '{{ $material->slug }}')">
+                                    Watch Video
+                                </button>
+
+                                <!-- Video Container -->
+                                <div class="mt-2" style="display: none;">
+                                    <iframe width="100%" height="400" allow="autoplay" allowfullscreen></iframe>
+                                </div>
+                                @endif
+                            </li>
+                            @endforeach
+                        </ul>
                         @else
-                            <p>No lecture materials available.</p>
+                        <p>No lecture materials available.</p>
                         @endif
                     </div>
                 </div>
             </section>
+
+            <script>
+                function toggleVideo(btn, driveLink) {
+                    const container = btn.nextElementSibling;
+                    const iframe = container.querySelector('iframe');
+
+                    if (container.style.display === 'none') {
+                        // Show video
+                        const match = driveLink.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                        if (match) {
+                            const fileId = match[1];
+                            iframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
+                            container.style.display = 'block';
+                            btn.textContent = 'Close Video';
+                        } else {
+                            alert('Invalid Google Drive link.');
+                        }
+                    } else {
+                        // Hide video
+                        container.style.display = 'none';
+                        iframe.src = ''; // stop the video
+                        btn.textContent = 'Watch Video';
+                    }
+                }
+            </script>
+
 
             <!-- Notes Section -->
             <section id="notes-section" class="mb-4" style="display: none;">
@@ -120,19 +151,19 @@
                     </div>
                     <div class="card-body">
                         @if(isset($notes) && $notes->count() > 0)
-                            <div class="list-group">
-                                @foreach($notes as $note)
-                                    <a href="" class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-1">{{ Str::limit($note->title, 80) }}</h6>
-                                            <small class="text-muted">{{ $note->created_at->diffForHumans() }}</small>
-                                        </div>
-                                        <small class="text-truncate">{{ Str::limit($note->body, 150) }}</small>
-                                    </a>
-                                @endforeach
-                            </div>
+                        <div class="list-group">
+                            @foreach($notes as $note)
+                            <a href="" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">{{ Str::limit($note->title, 80) }}</h6>
+                                    <small class="text-muted">{{ $note->created_at->diffForHumans() }}</small>
+                                </div>
+                                <small class="text-truncate">{{ Str::limit($note->body, 150) }}</small>
+                            </a>
+                            @endforeach
+                        </div>
                         @else
-                            <p>No notes yet.</p>
+                        <p>No notes yet.</p>
                         @endif
                     </div>
                 </div>
@@ -146,12 +177,12 @@
                     </div>
                     <div class="card-body">
                         @if(isset($student))
-                            <p><strong>Name:</strong> {{ $student->name }}</p>
-                            <p><strong>Email:</strong> {{ $student->email }}</p>
-                            <p><strong>Enrolled:</strong> {{ $student->created_at->format('M d, Y') }}</p>
-                            <a href=" class="btn btn-sm btn-outline-primary">Edit Profile</a>
+                        <p><strong>Name:</strong> {{ $student->name }}</p>
+                        <p><strong>Email:</strong> {{ $student->email }}</p>
+                        <p><strong>Enrolled:</strong> {{ $student->created_at->format('M d, Y') }}</p>
+                        <a href="{{route('profile.edit')}}" class="btn btn-sm btn-outline-primary">Edit Profile</a>
                         @else
-                            <p>Profile information goes here.</p>
+                        <p>Profile information goes here.</p>
                         @endif
                     </div>
                 </div>
@@ -181,7 +212,10 @@
             const link = Array.from(links).find(l => l.getAttribute('data-section') === id);
             if (link) link.classList.add('active');
             // Scroll main content to top of that section
-            mainContent.scrollTo({ top: sec.offsetTop - 10, behavior: 'smooth' });
+            mainContent.scrollTo({
+                top: sec.offsetTop - 10,
+                behavior: 'smooth'
+            });
         }
 
         // Click handlers

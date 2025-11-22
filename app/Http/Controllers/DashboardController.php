@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lessons;
 use Illuminate\Http\Request;
 use App\Models\Module;
 use App\Models\Student;
@@ -34,9 +35,16 @@ class DashboardController extends Controller
             case 'student':
                 // Fetch student-specific data
                 $student = Student::where('user_id', $user->id)->first();
-                $classes = $student ? $student->onClasses : collect(); // Assuming relationship exists
+                $classes = $student ? $student->onClasses : []; // Assuming relationship exists
+
+                $materials = collect();
+                if ($classes->count()) {
+                    $classIds = $classes->pluck('id');  // extract IDs from classes
+                    $materials = Lessons::whereIn('on_class_id', $classIds)->get();
+                }
+
                 $announcements = []; // Placeholder for announcements, implement as needed
-                return view('student.LMS', compact('classes', 'announcements'));
+                return view('student.LMS', compact('classes', 'announcements', 'student', 'materials'));
             default:
                 abort(403, 'Unauthorized action.');
                 break;
