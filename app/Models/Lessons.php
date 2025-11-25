@@ -13,4 +13,9 @@ class Lessons extends Model
     {
         return $this->belongsTo(OnClass::class);
     }
+
+    protected $casts = [
+    'expiration_date' => 'datetime',
+];
+
 }

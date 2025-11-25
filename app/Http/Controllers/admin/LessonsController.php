@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use App\Models\Lessons;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class LessonsController extends Controller
 {
@@ -12,7 +14,9 @@ class LessonsController extends Controller
      */
     public function index()
     {
-        //
+        $lessons = Lessons::orderBy('id', 'desc')->paginate(10);
+
+        return view('admin.lessons.view', compact('lessons'));
     }
 
     /**
@@ -36,15 +40,15 @@ class LessonsController extends Controller
      */
     public function show(Lessons $lessons)
     {
-        //
+        return view('admin.lessons.show', compact('lessons'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Lessons $lessons)
+    public function edit(Lessons $lesson)
     {
-        //
+        return view('admin.lessons.edit', compact('lesson'));
     }
 
     /**
