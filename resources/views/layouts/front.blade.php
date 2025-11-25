@@ -37,47 +37,72 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>eLEARNING</h2>
+        <a href="{{ url('/') }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>aadhyaEdu</h2>
         </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <!-- LEFT MENU ITEMS -->
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{{url('/')}}" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="courses.html" class="nav-item nav-link">Courses</a>
+                <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
+                <a href="{{ url('about') }}" class="nav-item nav-link">About</a>
+                <a href="{{ url('courses') }}" class="nav-item nav-link">Courses</a>
+
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
+                        <a href="{{ url('team') }}" class="dropdown-item">Our Team</a>
+                        <a href="{{ url('testimonial') }}" class="dropdown-item">Testimonial</a>
+                        <a href="{{ url('404') }}" class="dropdown-item">404 Page</a>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+
+                <a href="{{ url('contact') }}" class="nav-item nav-link">Contact</a>
+
                 @auth
-                <a href="{{ url('/student/LMS') }}" class="nav-item nav-link"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a href="{{ url('/student/LMS') }}" class="nav-item nav-link">
+                    <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                </a>
                 @else
-                <a href="{{ route('login') }}" class="nav-item nav-link"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
+                <a href="{{ route('login') }}" class="nav-item nav-link">
+                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                </a>
                 @endauth
             </div>
-            @auth
-            <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                @csrf
-                <button type="submit" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Logout<i class="fas fa-sign-out-alt ms-3"></i></button>
-            </form>
-            @else
-            <a href="https://wa.me/94779719469?text=Hello%20Sir,%20I%20want%20to%20join%20your%20Science%20Class" target="_blank" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fab fa-whatsapp ms-3"></i></a>
-            @endauth
+
+            <!-- RIGHT SIDE BUTTONS (NOW VISIBLE ON ALL SCREENS) -->
+            <div class="p-3">
+                @auth
+                <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-primary py-2 px-4">
+                        Logout <i class="fas fa-sign-out-alt ms-2"></i>
+                    </button>
+                </form>
+                @else
+                <a href="https://wa.me/94779719469?text=Hello%20Sir,%20I%20want%20to%20join%20your%20Science%20Class"
+                    target="_blank" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+                    Join Now <i class="fab fa-whatsapp"></i>
+                </a>
+
+                @endauth
+            </div>
+
         </div>
     </nav>
+
+
     <!-- Navbar End -->
 
     <!-- Content -->
-  
-        @yield('content')
+
+    @yield('content')
 
     <!-- End Content -->
 

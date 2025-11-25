@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\admin\StudentController;
 use App\Http\Controllers\LMS\LMSController;
+use App\Http\Controllers\admin\LessonsController;
 
 
 Route::get('/', function () {
@@ -28,6 +29,11 @@ Route::prefix('admin', ['middleware' => ['auth', 'verified', 'role:admin']])->gr
 
     /* Online Class */
     Route::resource('classes', OnClassController::class);
+    /* End of Online Class */
+
+    /* Lecture Materials */
+    Route::resource('lessons', LessonsController::class);
+    /* End of Lecture Materials */
 });
 
 
