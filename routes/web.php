@@ -3,20 +3,36 @@
 use App\Http\Controllers\admin\OnClassController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\admin\StudentController;
 use App\Http\Controllers\LMS\LMSController;
 use App\Http\Controllers\admin\LessonsController;
-
+use App\Http\Controllers\admin\ModuleController;
 
 Route::get('/', function () {
     return view('student.master');
 });
 
- Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->middleware(['auth', 'verified'])->name('dashboard'); 
+/* Pages */
+Route::get('/about', function () {
+    return view('student/about');
+});
 
-/* Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard'); */
+Route::get('/contact', function () {
+    return view('student/contact');
+});
+
+Route::get('/team', function () {
+    return view('student/team');
+});
+
+Route::get('/courses', function () {
+    return view('student/course');
+});
+
+
+Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::prefix('admin', ['middleware' => ['auth', 'verified', 'role:admin']])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'adminDB'])->name('admin');
@@ -34,6 +50,11 @@ Route::prefix('admin', ['middleware' => ['auth', 'verified', 'role:admin']])->gr
     /* Lecture Materials */
     Route::resource('lessons', LessonsController::class);
     /* End of Lecture Materials */
+
+    /* Module */
+    Route::resource('modules',ModuleController::class);
+    /* end Module */
+
 });
 
 

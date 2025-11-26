@@ -38,9 +38,9 @@ class LessonsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Lessons $lessons)
+    public function show(Lessons $lesson)
     {
-        return view('admin.lessons.show', compact('lessons'));
+        return view('admin.lessons.show', compact('lesson'));
     }
 
     /**
@@ -54,9 +54,12 @@ class LessonsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Lessons $lessons)
+    public function update(Request $request, Lessons $lesson)
     {
-        //
+        $lesson->update($request->all());
+
+        return redirect()->route('lessons.index')
+            ->with('success', 'Lesson updated successfully!');
     }
 
     /**
@@ -64,6 +67,9 @@ class LessonsController extends Controller
      */
     public function destroy(Lessons $lessons)
     {
-        //
+        $lessons->delete();
+
+        return redirect()->route('lessons.index')
+            ->with('success', 'Lesson deleted successfully!');
     }
 }

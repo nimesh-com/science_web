@@ -38,7 +38,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="{{ url('/') }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>aadhyaEdu</h2>
+            <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>SmartScience</h2>
         </a>
 
         <!-- Mobile Toggler -->
@@ -50,31 +50,49 @@
 
             <!-- LEFT MENU ITEMS -->
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
-                <a href="{{ url('about') }}" class="nav-item nav-link">About</a>
-                <a href="{{ url('courses') }}" class="nav-item nav-link">Courses</a>
+                <a href="{{ url('/') }}"
+                    class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
+
+                <a href="{{ url('about') }}"
+                    class="nav-item nav-link {{ request()->is('about') ? 'active' : '' }}">About</a>
+
+                <a href="{{ url('courses') }}"
+                    class="nav-item nav-link {{ request()->is('courses') ? 'active' : '' }}">Courses</a>
 
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#"
+                        class="nav-link dropdown-toggle 
+           {{ request()->is('team') || request()->is('testimonial') || request()->is('404') ? 'active' : '' }}"
+                        data-bs-toggle="dropdown">Pages</a>
+
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="{{ url('team') }}" class="dropdown-item">Our Team</a>
-                        <a href="{{ url('testimonial') }}" class="dropdown-item">Testimonial</a>
-                        <a href="{{ url('404') }}" class="dropdown-item">404 Page</a>
+                        <a href="{{ url('team') }}"
+                            class="dropdown-item {{ request()->is('team') ? 'active' : '' }}">Our Team</a>
+
+                        <a href="{{ url('testimonial') }}"
+                            class="dropdown-item {{ request()->is('testimonial') ? 'active' : '' }}">Testimonial</a>
+
+                        <a href="{{ url('404') }}"
+                            class="dropdown-item {{ request()->is('404') ? 'active' : '' }}">404 Page</a>
                     </div>
                 </div>
 
-                <a href="{{ url('contact') }}" class="nav-item nav-link">Contact</a>
+                <a href="{{ url('contact') }}"
+                    class="nav-item nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact</a>
 
                 @auth
-                <a href="{{ url('/student/LMS') }}" class="nav-item nav-link">
+                <a href="{{ url('/student/LMS') }}"
+                    class="nav-item nav-link {{ request()->is('student/LMS') ? 'active' : '' }}">
                     <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                 </a>
                 @else
-                <a href="{{ route('login') }}" class="nav-item nav-link">
+                <a href="{{ route('login') }}"
+                    class="nav-item nav-link {{ request()->is('login') ? 'active' : '' }}">
                     <i class="fas fa-sign-in-alt me-2"></i>Login
                 </a>
                 @endauth
             </div>
+
 
             <!-- RIGHT SIDE BUTTONS (NOW VISIBLE ON ALL SCREENS) -->
             <div class="p-3">
@@ -135,22 +153,22 @@
                     <h4 class="text-white mb-3">Gallery</h4>
                     <div class="row g-2 pt-2">
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{asset('assets-frontend/img/course-1.jpg')}}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{asset('assets-frontend/img/course-2.jpg')}}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{asset('assets-frontend/img/course-3.jpg')}}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{asset('assets-frontend/img/course-2.jpg')}}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{asset('assets-frontend/img/course-3.jpg')}}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{asset('assets-frontend/img/course-1.jpg')}}" alt="">
                         </div>
                     </div>
                 </div>
@@ -168,11 +186,11 @@
             <div class="copyright">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+                        &copy; <a class="border-bottom" href="{{url('/')}}">SmartScience</a>, All Right Reserved.
 
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
-                        Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
+                        Designed By <a class="border-bottom" href="#">Nimesh Jayawickrama</a><br><br>
+
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">
