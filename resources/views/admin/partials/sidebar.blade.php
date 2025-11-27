@@ -27,7 +27,7 @@
                 @forelse($Modules as $module)
                 <li class="nav-item">
                     <a href="{{ url($module->slug) }}" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
+                   <i class="fa-regular fa-gear fa-spin"></i>
                         <p>{{ $module->name }}</p>
                     </a>
                 </li>
