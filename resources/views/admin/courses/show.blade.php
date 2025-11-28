@@ -43,12 +43,23 @@
                                     <td>{{ $course->study_mode ?? '-' }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Price</th>
+                                    <td>
+                                        @if(!empty($course->price))
+                                           <strong class="text-primary">LKR {{ number_format($course->price ?? 0, 2, '.', ',') }}</strong>
+
+                                        @else
+                                            <span class="text-muted">Free</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>Status</th>
                                     <td>
                                         @if(isset($course->status) && ($course->status === 1 || strtolower($course->status) === 'active'))
-                                        <span class="badge badge-success">Active</span>
+                                            <span class="badge badge-success">Active</span>
                                         @else
-                                        <span class="badge badge-secondary">Inactive</span>
+                                            <span class="badge badge-secondary">Inactive</span>
                                         @endif
                                     </td>
                                 </tr>
@@ -74,16 +85,16 @@
 
                     <div class="card-body text-center">
                         @if(!empty($course->image))
-                        <img src="{{ asset('public/uploads/courses/' . $course->image) }}"
-                            title="{{ $course->image }}"
-                            alt="{{ $course->name }}"
-                            class="img-fluid img-thumbnail mb-2"
-                            style="max-height:250px;">
+                            <img src="{{ asset('public/uploads/courses/' . $course->image) }}"
+                                title="{{ $course->image }}"
+                                alt="{{ $course->name }}"
+                                class="img-fluid img-thumbnail mb-2"
+                                style="max-height:250px;">
                         @else
-                        <div class="border rounded py-5">
-                            <i class="fas fa-book fa-3x text-muted"></i>
-                            <div class="text-muted mt-2 small">No image available</div>
-                        </div>
+                            <div class="border rounded py-5">
+                                <i class="fas fa-book fa-3x text-muted"></i>
+                                <div class="text-muted mt-2 small">No image available</div>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -101,12 +112,12 @@
                         <form action="{{ route('courses.destroy', $course->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this course?');">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger btn-block" type="submit">
+                            <button class="btn btn-danger btn-block mb-2" type="submit">
                                 <i class="fas fa-trash"></i> Delete Course
                             </button>
                         </form>
 
-                        <a href="{{ route('courses.index') }}" class="btn btn-secondary btn-block mt-2">
+                        <a href="{{ route('courses.index') }}" class="btn btn-secondary btn-block">
                             <i class="fas fa-arrow-left"></i> Back to List
                         </a>
                     </div>

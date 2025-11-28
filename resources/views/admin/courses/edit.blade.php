@@ -16,7 +16,7 @@
                 <label for="name">Course Name</label>
                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter course name" value="{{ old('name', $course->name) }}" required>
                 @error('name')
-                    <span class="text-danger small">{{ $message }}</span>
+                <span class="text-danger small">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -26,10 +26,10 @@
                     <option value="">Select Grade</option>
                     @for ($i = 6; $i <= 12; $i++)
                         <option value="{{ $i }}" {{ old('grade', $course->grade) == $i ? 'selected' : '' }}>Grade {{ $i }}</option>
-                    @endfor
+                        @endfor
                 </select>
                 @error('grade')
-                    <span class="text-danger small">{{ $message }}</span>
+                <span class="text-danger small">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -37,7 +37,7 @@
                 <label for="instructor">Instructor</label>
                 <input type="text" name="instructor" class="form-control @error('instructor') is-invalid @enderror" id="instructor" placeholder="Enter instructor name" value="{{ old('instructor', $course->instructor) }}">
                 @error('instructor')
-                    <span class="text-danger small">{{ $message }}</span>
+                <span class="text-danger small">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -50,23 +50,37 @@
                     <option value="Hybrid" {{ old('study_mode', $course->study_mode) == 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
                 </select>
                 @error('study_mode')
-                    <span class="text-danger small">{{ $message }}</span>
+                <span class="text-danger small">{{ $message }}</span>
                 @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">LKR</span>
+                    </div>
+                    <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Enter course price" value="{{ old('price', $course->price) }}" step="0.01" min="0">
+                </div>
+                @error('price')
+                <span class="text-danger small">{{ $message }}</span>
+                @enderror
+                <small class="form-text text-muted">Enter price in decimal format (e.g., 99.99)</small>
             </div>
 
             <div class="form-group">
                 <label for="image">Course Image</label>
                 @if(!empty($course->image))
-                    <div class="mb-2">
-                        <img src="{{ asset('public/uploads/courses/' . $course->image) }}" alt="{{ $course->name }}" class="img-thumbnail" style="max-height:100px;">
-                    </div>
+                <div class="mb-2">
+                    <img src="{{ asset('public/uploads/courses/' . $course->image) }}" alt="{{ $course->name }}" class="img-thumbnail" style="max-height:100px;">
+                </div>
                 @endif
                 <div class="custom-file">
                     <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="image" accept="image/*">
                     <label class="custom-file-label" for="image">{{ !empty($course->image) ? 'Change image' : 'Choose file' }}</label>
                 </div>
                 @error('image')
-                    <span class="text-danger small">{{ $message }}</span>
+                <span class="text-danger small">{{ $message }}</span>
                 @enderror
                 <small class="form-text text-muted">Supported: JPG, PNG, GIF (Max 2MB)</small>
             </div>
@@ -78,7 +92,7 @@
                     <option value="0" {{ old('status', $course->status) == 0 ? 'selected' : '' }}>Inactive</option>
                 </select>
                 @error('status')
-                    <span class="text-danger small">{{ $message }}</span>
+                <span class="text-danger small">{{ $message }}</span>
                 @enderror
             </div>
 

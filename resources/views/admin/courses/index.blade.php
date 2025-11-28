@@ -30,9 +30,10 @@
                         <tr>
                             <th style="width:50px">#</th>
                             <th>Name</th>
-                            <th style="width:140px">Grade</th>
-                            <th style="width:180px">Instructor</th>
-                            <th style="width:120px">Status</th>
+                            <th style="width:100px">Grade</th>
+                            <th style="width:150px">Instructor</th>
+                            <th style="width:100px">Price</th>
+                            <th style="width:100px">Status</th>
                             <th style="width:250px">Action</th>
                         </tr>
                     </thead>
@@ -43,14 +44,21 @@
                             <td>{{ $course->name ?? '-' }}</td>
                             <td>{{ $course->grade ?? '-' }}</td>
                             <td>{{ $course->instructor ?? '-' }}</td>
-                           <td>
-    @if(isset($course->status) && ($course->status === 1 || strtolower($course->status) === 'active'))
-        <span class="badge badge-success">Active</span>
-    @else
-        <span class="badge badge-secondary">Inactive</span>
-    @endif
-</td>
+                            <td>
+                                @if(!empty($course->price))
+                                  <strong class="text-primary">LKR {{ number_format($course->price ?? 0, 2, '.', ',') }}</strong>
 
+                                @else
+                                    <span class="text-muted">Free</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if(isset($course->status) && ($course->status === 1 || strtolower($course->status) === 'active'))
+                                    <span class="badge badge-success">Active</span>
+                                @else
+                                    <span class="badge badge-secondary">Inactive</span>
+                                @endif
+                            </td>
                             <td>
                                 <a href="{{ route('courses.show', $course->id) }}" class="btn btn-sm btn-info">View</a>
                                 <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-sm btn-warning">Edit</a>
@@ -64,7 +72,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">No courses found.</td>
+                            <td colspan="7" class="text-center">No courses found.</td>
                         </tr>
                         @endforelse
                     </tbody>

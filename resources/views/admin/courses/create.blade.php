@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 @section('content')
 
@@ -52,6 +51,20 @@
                 @error('study_mode')
                     <span class="text-danger small">{{ $message }}</span>
                 @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Enter course price" value="{{ old('price') }}" step="0.01" min="0">
+                </div>
+                @error('price')
+                    <span class="text-danger small">{{ $message }}</span>
+                @enderror
+                <small class="form-text text-muted">Enter price in decimal format (e.g., 99.99)</small>
             </div>
 
             <div class="form-group">

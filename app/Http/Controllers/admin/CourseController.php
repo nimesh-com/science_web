@@ -36,6 +36,7 @@ class CourseController extends Controller
             'image' => 'nullable|image|max:2048',
             'grade' => 'required|string|max:255',
             'instructor' => 'required|string|max:255',
+            'price' => 'required|numeric',
         ]);
 
         if ($request->hasFile('image')) {
@@ -77,6 +78,7 @@ class CourseController extends Controller
             'grade' => 'required|string|max:255',
             'instructor' => 'required|string|max:255',
             'status' => 'required|in:0,1',
+            'price' => 'required|numeric',
         ]);
 
         if ($request->hasFile('image')) {
