@@ -34,28 +34,29 @@ Route::get('/courses', function () {
 Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::prefix('admin', ['middleware' => ['auth', 'verified', 'role:admin']])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'adminDB'])->name('admin');
+Route::prefix('admin')
+    ->middleware(['auth', 'verified', 'role:admin'])
+    ->group(function () {
 
-    /* Student Routes */
-    Route::resource('students', StudentController::class);
-    Route::post('students/{student}/toggle-status', [StudentController::class, 'toggleStatus'])->name('students.toggleStatus');
+        Route::get('/dashboard', [DashboardController::class, 'adminDB'])
+            ->name('admin');
 
-    /* End of Student Routes */
+        /* Student Routes */
+        Route::resource('students', StudentController::class);
+        Route::post('students/{student}/toggle-status', [StudentController::class, 'toggleStatus'])
+            ->name('students.toggleStatus');
 
-    /* Online Class */
-    Route::resource('classes', OnClassController::class);
-    /* End of Online Class */
+        /* Online Class */
+        Route::resource('classes', OnClassController::class);
 
-    /* Lecture Materials */
-    Route::resource('lessons', LessonsController::class);
-    /* End of Lecture Materials */
+        /* Lecture Materials */
+        Route::resource('lessons', LessonsController::class);
 
-    /* Module */
-    Route::resource('modules',ModuleController::class);
-    /* end Module */
+        /* Module */
+        Route::resource('modules', ModuleController::class);
 
 });
+
 
 
 /* Student LMS */
