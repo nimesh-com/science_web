@@ -34,7 +34,6 @@
 <body>
 
 
-
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="{{ url('/') }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -49,74 +48,66 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
 
             <!-- LEFT MENU ITEMS -->
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{{ url('/') }}"
-                    class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
+            <div class="navbar-nav ms-auto me-3 p-4 p-lg-0 d-flex align-items-center">
+                <a href="{{ url('/') }}" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
 
-                <a href="{{ url('about') }}"
-                    class="nav-item nav-link {{ request()->is('about') ? 'active' : '' }}">About</a>
+                <a href="{{ url('about') }}" class="nav-item nav-link {{ request()->is('about') ? 'active' : '' }}">About</a>
 
-                <a href="{{ url('courses') }}"
-                    class="nav-item nav-link {{ request()->is('courses') ? 'active' : '' }}">Courses</a>
+                <a href="{{ url('courses') }}" class="nav-item nav-link {{ request()->is('courses') ? 'active' : '' }}">Courses</a>
 
                 <div class="nav-item dropdown">
-                    <a href="#"
-                        class="nav-link dropdown-toggle 
-           {{ request()->is('team') || request()->is('testimonial') || request()->is('404') ? 'active' : '' }}"
-                        data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle 
+                    {{ request()->is('team') || request()->is('testimonial') || request()->is('404') ? 'active' : '' }}"
+                        data-bs-toggle="dropdown">
+                        Pages
+                    </a>
 
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="{{ url('team') }}"
-                            class="dropdown-item {{ request()->is('team') ? 'active' : '' }}">Our Team</a>
+                        <a href="{{ url('team') }}" class="dropdown-item {{ request()->is('team') ? 'active' : '' }}">Our Team</a>
 
-                        <a href="{{ url('testimonial') }}"
-                            class="dropdown-item {{ request()->is('testimonial') ? 'active' : '' }}">Testimonial</a>
+                        <a href="{{ url('testimonial') }}" class="dropdown-item {{ request()->is('testimonial') ? 'active' : '' }}">Testimonial</a>
 
-                        <a href="{{ url('404') }}"
-                            class="dropdown-item {{ request()->is('404') ? 'active' : '' }}">404 Page</a>
+                        <a href="{{ url('404') }}" class="dropdown-item {{ request()->is('404') ? 'active' : '' }}">404 Page</a>
                     </div>
                 </div>
 
-                <a href="{{ url('contact') }}"
-                    class="nav-item nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact</a>
+                <a href="{{ url('contact') }}" class="nav-item nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact</a>
 
                 @auth
-                <a href="{{ url('/student/LMS') }}"
-                    class="nav-item nav-link {{ request()->is('student/LMS') ? 'active' : '' }}">
+                <a href="{{ url('/student/LMS') }}" class="nav-item nav-link {{ request()->is('student/LMS') ? 'active' : '' }}">
                     <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                 </a>
                 @else
-                <a href="{{ route('login') }}"
-                    class="nav-item nav-link {{ request()->is('login') ? 'active' : '' }}">
+                <a href="{{ route('login') }}" class="nav-item nav-link {{ request()->is('login') ? 'active' : '' }}">
                     <i class="fas fa-sign-in-alt me-2"></i>Login
                 </a>
                 @endauth
             </div>
 
-
-            <!-- RIGHT SIDE BUTTONS (NOW VISIBLE ON ALL SCREENS) -->
-            <div class="p-3">
+            <!-- RIGHT SIDE LINK -->
+            <div class="d-flex align-items-center px-4 pb-3 pb-lg-0">
                 @auth
-                <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                <form method="POST" action="{{ route('logout') }}" class="d-inline ms-auto">
                     @csrf
                     <button type="submit" class="btn btn-primary py-2 px-4">
                         Logout <i class="fas fa-sign-out-alt ms-2"></i>
                     </button>
                 </form>
                 @else
-                <a href="https://wa.me/94779719469?text=Hello%20Sir,%20I%20want%20to%20join%20your%20Science%20Class"
-                    target="_blank" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
-                    Join Now <i class="fab fa-whatsapp"></i>
+                <a href="https://wa.me/713134617?text=Hello%20Sir,%20I%20want%20to%20join%20your%20Science%20Class"
+                    target="_blank"
+                    class="text-decoration-none d-flex align-items-center gap-1 ms-lg-2"
+                    style="font-weight: 600; font-size: 16px; color: #25D366;">
+                    Join Now <i class="fab fa-whatsapp" style="font-size: 20px;"></i>
                 </a>
-
                 @endauth
             </div>
 
+
         </div>
     </nav>
-
-
     <!-- Navbar End -->
+
 
     <!-- Content -->
 
@@ -139,11 +130,11 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>--</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+94 71 313 4617</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@sciencelms.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://wa.me/713134617?text=Hello%20Sir,%20I%20want%20to%20join%20your%20Science%20Class"><i class="fab fa-whatsapp"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
@@ -153,31 +144,23 @@
                     <h4 class="text-white mb-3">Gallery</h4>
                     <div class="row g-2 pt-2">
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{asset('assets-frontend/img/course-1.jpg')}}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{asset('public/assets-frontend/img/course-1.jpg')}}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{asset('assets-frontend/img/course-2.jpg')}}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{asset('public/assets-frontend/img/course-2.jpg')}}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{asset('assets-frontend/img/course-3.jpg')}}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{asset('public/assets-frontend/img/course-3.jpg')}}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{asset('assets-frontend/img/course-2.jpg')}}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{asset('public/assets-frontend/img/course-2.jpg')}}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{asset('assets-frontend/img/course-3.jpg')}}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{asset('public/assets-frontend/img/course-3.jpg')}}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{asset('assets-frontend/img/course-1.jpg')}}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{asset('public/assets-frontend/img/course-1.jpg')}}" alt="">
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                     </div>
                 </div>
             </div>

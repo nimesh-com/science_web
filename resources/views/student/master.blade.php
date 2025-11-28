@@ -18,7 +18,7 @@
                             </p>
 
                             <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
-                            <a href="https://wa.me/94779719469?text=Hello%20Sir,%20I%20want%20to%20join%20your%20Science%20Class" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+                            <a href="https://wa.me/713134617?text=Hello%20Sir,%20I%20want%20to%20join%20your%20Science%20Class" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                                 Online science classes for Grades 6, 7, 8, and 10. Students can watch previous class videos, enjoy all practicals covered, and learn using the latest technology both online and in physical sessions.
                             </p>
                             <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
-                            <a href="https://wa.me/94779719469?text=Hello%20Sir,%20I%20want%20to%20join%20your%20Science%20Class" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+                            <a href="https://wa.me/713134617?text=Hello%20Sir,%20I%20want%20to%20join%20your%20Science%20Class" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
                         </div>
                     </div>
                 </div>
