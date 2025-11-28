@@ -50,26 +50,32 @@
             return text.toString().toLowerCase()
                 .trim()
                 .replace(/\s+/g, '-') // Replace spaces with -
-                .replace(/[^\w\-]+/g, '') // Remove all non-word chars
-                .replace(/\-\-+/g, '-'); // Replace multiple - with single -
+                .replace(/[^\w\-\/]+/g, '') // Remove all non-word chars
+                .replace(/\/\-+/g, '/'); // Replace multiple - with single -
         }
 
         var nameInput = document.getElementById('name');
         var slugInput = document.getElementById('slug');
 
         if (nameInput && slugInput) {
-            // ensure dataset.auto default
             if (!slugInput.dataset.auto) slugInput.dataset.auto = '1';
 
             nameInput.addEventListener('input', function() {
                 if (!slugInput.value || slugInput.dataset.auto === '1') {
-                    slugInput.value = slugify(nameInput.value);
+                    var words = nameInput.value.trim().split(/\s+/);
+                    if (words.length > 1) {
+                        var firstWord = words[0];
+                        var restWords = words.slice(1).join(' ');
+                        slugInput.value = 'admin/' + slugify(restWords);
+                    } else {
+                        slugInput.value = 'admin/';
+                    }
                     slugInput.dataset.auto = '1';
                 }
             });
 
             slugInput.addEventListener('input', function() {
-                slugInput.dataset.auto = '0'; // user edited slug manually
+                slugInput.dataset.auto = '0';
             });
         }
     })();

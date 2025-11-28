@@ -38,7 +38,7 @@ class ModuleController extends Controller
         ]);
 
         Module::create([
-            'name' => $request->title,
+            'name' => $request->name,
             'slug' => $request->slug,
             'description' => $request->description,
         ]);
@@ -74,7 +74,7 @@ class ModuleController extends Controller
         ]);
 
         $module->update([
-            'name' => $request->title,
+            'name' => $request->name,
             'slug' => $request->slug,
             'description' => $request->description,
         ]);
