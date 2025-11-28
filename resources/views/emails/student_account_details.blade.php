@@ -15,7 +15,7 @@
               <table width="100%">
                 <tr>
                   <td style="vertical-align:middle;">
-                    <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name') }}" width="120" style="display:block;">
+                    <img src="{{asset('public/assets-frontend/img/logo.png') }}" alt="{{ config('app.name') }}" width="120" style="display:block;">
                   </td>
                   <td style="text-align:right;vertical-align:middle;font-size:13px;color:#6b7280;">
                     <strong style="color:#111827">{{ config('app.name') }}</strong><br>

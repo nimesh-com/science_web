@@ -16,7 +16,7 @@
                         <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center"
                             style="background: linear-gradient(180deg, #ffffff, #f7fbff); border-radius: 12px 0 0 12px;">
                             <div class="p-4 text-center">
-                                <img src="{{ asset('assets-frontend/img/login.jpg') }}" alt="Logo" style="max-width: 200px;" class="mb-3">
+                                <img src="{{asset('public/assets-frontend/img/login.jpg') }}" alt="Logo" style="max-width: 200px;" class="mb-3">
                                 <h4 class="mb-1">Welcome Back</h4>
                                 <p class="text-muted mb-3">Sign in to access your courses, notes and live classes.</p>
                             </div>
