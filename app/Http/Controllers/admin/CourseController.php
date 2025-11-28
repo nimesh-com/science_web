@@ -13,7 +13,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::orderBy('id', 'desc')->paginate(10);
+        return view('admin.courses.index', compact('courses'));
     }
 
     /**
@@ -21,7 +22,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.courses.create');
     }
 
     /**
@@ -29,7 +30,22 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ValidatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'study_mode' => 'required|string|max:255',
+            'image' => 'nullable|image|max:2048',
+            'grade' => 'required|string|max:255',
+            'instructor' => 'required|string|max:255',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/courses'), $imageName);
+            $ValidatedData['image'] = $imageName;
+        }
+        Course::create($ValidatedData);
+        return redirect()->route('courses.index')->with('success', 'Course created successfully.');
     }
 
     /**
@@ -37,7 +53,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        return view('admin.courses.show', compact('course'));
     }
 
     /**
@@ -45,7 +61,7 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        return view('admin.courses.edit', compact('course'));
     }
 
     /**
@@ -53,7 +69,27 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $imageName = $course->image;
+        $ValidatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'study_mode' => 'required|string|max:255',
+            'image' => 'nullable|image|max:2048',
+            'grade' => 'required|string|max:255',
+            'instructor' => 'required|string|max:255',
+            'status' => 'required|in:0,1',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/courses'), $imageName);
+            $ValidatedData['image'] = $imageName;
+        }
+
+        $ValidatedData['image'] = $imageName;
+
+        $course->update($ValidatedData);
+        return redirect()->route('courses.index')->with('success', 'Course updated successfully.');
     }
 
     /**
@@ -61,6 +97,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+        return redirect()->route('courses.index')->with('success', 'Course deleted successfully.');
     }
 }

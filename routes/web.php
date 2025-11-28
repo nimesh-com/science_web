@@ -8,10 +8,9 @@ use App\Http\Controllers\admin\StudentController;
 use App\Http\Controllers\LMS\LMSController;
 use App\Http\Controllers\admin\LessonsController;
 use App\Http\Controllers\admin\ModuleController;
+use App\Http\Controllers\admin\CourseController;
 
-Route::get('/', function () {
-    return view('student.master');
-});
+Route::get('/',[DashboardController::class, 'index'])->name('home');
 
 /* Pages */
 Route::get('/about', function () {
@@ -60,6 +59,9 @@ Route::prefix('admin')
 
         /* Module */
         Route::resource('modules', ModuleController::class);
+
+        /* Course */
+        Route::resource('courses', CourseController::class);
 
 });
 
