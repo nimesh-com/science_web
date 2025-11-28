@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lessons;
 use Illuminate\Http\Request;
 use App\Models\Module;
 use App\Models\Student;
+use App\Models\Course;
+use App\Models\OnClass;
 
 class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() {}
+    public function index() {
+        $courses = Course::all();
+        return view('student.master', compact('courses'));
+ 
+    }
 
     public function guestDB() {}
 
@@ -23,7 +28,11 @@ class DashboardController extends Controller
         $StudentsCNT = Student::all()->count();
         $blockedStudents = Student::where('active', '0')->count();
 
-        return view('admin.master', compact('Modules', 'StudentsCNT', 'blockedStudents'));
+        $coursesCNT = Course::all()->count();
+        $liveclassCNT = OnClass::all()->count();
+
+
+        return view('admin.master', compact('Modules', 'StudentsCNT', 'blockedStudents', 'coursesCNT', 'liveclassCNT'));
     }
 
     public function showDashboard(Request $request)

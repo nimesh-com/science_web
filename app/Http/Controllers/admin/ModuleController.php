@@ -14,7 +14,8 @@ class ModuleController extends Controller
      */
     public function index()
     {
-      
+        $modules = Module::orderBy('id', 'desc')->paginate(10);
+        return view('admin.modules.index', compact('modules'));
     }
 
     /**
@@ -22,7 +23,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.modules.create');
     }
 
     /**
@@ -30,7 +31,19 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:modules,slug',
+            'description' => 'nullable|string',
+        ]);
+
+        Module::create([
+            'name' => $request->title,
+            'slug' => $request->slug,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('modules.index')->with('success', 'Module created successfully.');
     }
 
     /**
@@ -38,7 +51,7 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
-        //
+        return view('admin.modules.show', compact('module'));
     }
 
     /**
@@ -46,7 +59,7 @@ class ModuleController extends Controller
      */
     public function edit(Module $module)
     {
-        //
+        return view('admin.modules.edit', compact('module'));
     }
 
     /**
@@ -54,7 +67,19 @@ class ModuleController extends Controller
      */
     public function update(Request $request, Module $module)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:modules,slug,' . $module->id,
+            'description' => 'nullable|string',
+        ]);
+
+        $module->update([
+            'name' => $request->title,
+            'slug' => $request->slug,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('modules.index')->with('success', 'Module updated successfully.');
     }
 
     /**
@@ -62,6 +87,7 @@ class ModuleController extends Controller
      */
     public function destroy(Module $module)
     {
-        //
+        $module->delete();
+        return redirect()->route('modules.index')->with('success', 'Module deleted successfully.');
     }
 }
