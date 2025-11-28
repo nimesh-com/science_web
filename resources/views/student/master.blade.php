@@ -288,7 +288,7 @@
                     </div>
                     <div class="text-center p-4">
                         <h5 class="mb-0">Sumith Wijewardana</h5>
-                        <small>Sceice Lecture</small>
+                        <small>Science Lecture</small>
                     </div>
                 </div>
             </div>
