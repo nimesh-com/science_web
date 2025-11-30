@@ -14,16 +14,19 @@ class LMSController extends Controller
         return view('student.LMS.LMSDB');
     }
 
-    public function LiveSession()
-    {
-        $user = Auth::user();
+public function LiveSession()
+{
+    $user = Auth::user();
+    $classes = collect();
 
-        if ($user->role == 'student') {
-            $student = $user->student;
-            $classes = $student ? $student->onClasses : [];
-        }
-        return view('student.LMS.live', compact('classes'));
+    if ($user->role == 'student' && $user->student) {
+        $classes = $user->student->onClasses()->where('status', 1)->get();
     }
+
+    return view('student.LMS.live', compact('classes'));
+}
+
+
 
 public function RecordedSessions()
 {

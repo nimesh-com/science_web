@@ -34,25 +34,25 @@
                                 <tr>
                                     <th>Google Drive Link</th>
                                     <td>
-                                        @if(!empty($lesson->drive_link))
-                                            <a href="{{ $lesson->drive_link }}" target="_blank" class="btn btn-sm btn-info">
-                                                <i class="fas fa-external-link-alt"></i> View File
-                                            </a>
+                                        @if(!empty($lesson->slug))
+                                        <a href="{{ $lesson->slug }}" target="_blank" class="btn btn-sm btn-info">
+                                            <i class="fas fa-external-link-alt"></i> View File
+                                        </a>
                                         @else
-                                            <span class="text-muted">-</span>
+                                        <span class="text-muted">-</span>
                                         @endif
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Expiration Date</th>
                                     <td>
-                                        @if(!empty($lesson->expiration_date))
-                                            {{ \Carbon\Carbon::parse($lesson->expiration_date)->format('M d, Y') }}
-                                            @if(\Carbon\Carbon::parse($lesson->expiration_date)->isPast())
-                                                <span class="badge badge-danger ml-2">Expired</span>
-                                            @endif
+                                        @if($lesson->formatted_expiration)
+                                        {{ $lesson->formatted_expiration }}
+                                        @if($lesson->is_expired)
+                                        <span class="badge bg-danger ms-2">Expired</span>
+                                        @endif
                                         @else
-                                            <span class="text-muted">-</span>
+                                        -
                                         @endif
                                     </td>
                                 </tr>
@@ -60,9 +60,9 @@
                                     <th>Status</th>
                                     <td>
                                         @if(!empty($lesson->status) && $lesson->status == 1)
-                                            <span class="badge badge-success">Active</span>
+                                        <span class="badge badge-success">Active</span>
                                         @else
-                                            <span class="badge badge-secondary">Inactive</span>
+                                        <span class="badge badge-secondary">Inactive</span>
                                         @endif
                                     </td>
                                 </tr>
@@ -87,10 +87,10 @@
                     </div>
 
                     <div class="card-body">
-                        @if(!empty($lesson->drive_link))
-                            <a href="{{ $lesson->drive_link }}" target="_blank" class="btn btn-info btn-block mb-2">
-                                <i class="fas fa-download"></i> Download from Drive
-                            </a>
+                        @if(!empty($lesson->slug))
+                        <a href="{{ $lesson->slug }}" target="_blank" class="btn btn-info btn-block mb-2">
+                            <i class="fas fa-download"></i> Download from Drive
+                        </a>
                         @endif
 
                         <a href="{{ route('lessons.edit', $lesson->id) }}" class="btn btn-warning btn-block mb-2">

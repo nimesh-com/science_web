@@ -11,7 +11,8 @@ use App\Http\Controllers\admin\ModuleController;
 use App\Http\Controllers\admin\CourseController;
 use App\Http\Controllers\PageController;
 
-Route::get('/',[DashboardController::class, 'index'])->name('home');
+
+Route::get('/', [DashboardController::class, 'index'])->name('home');
 
 /* Pages */
 Route::get('/about', function () {
@@ -61,8 +62,7 @@ Route::prefix('admin')
 
         /* Course */
         Route::resource('courses', CourseController::class);
-
-});
+    });
 
 
 
@@ -72,8 +72,8 @@ Route::prefix('student')
     ->group(function () {
         Route::get('/LMS', [LMSController::class, 'index'])->name('LMS');
 
-        Route::get('/live',[LMSController::class, 'LiveSession'])->name('student.lms.classroom');
-        Route::get('/recorded',[LMSController::class, 'RecordedSessions'])->name('student.lms.recorded');
+        Route::get('/live', [LMSController::class, 'LiveSession'])->name('student.lms.classroom');
+        Route::get('/recorded', [LMSController::class, 'RecordedSessions'])->name('student.lms.recorded');
     });
 
 Route::middleware('auth')->group(function () {
@@ -81,6 +81,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 
 require __DIR__ . '/auth.php';

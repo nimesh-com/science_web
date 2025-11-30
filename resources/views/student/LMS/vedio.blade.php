@@ -40,8 +40,6 @@
                     </ul>
 
                     <div class="mt-auto d-flex justify-content-between">
-                        <a href="" class="btn btn-sm btn-outline-primary">Details</a>
-
                         @php
                         $videoUrl = $video->slug ?? ($video->video_path ? asset('storage/' . $video->video_path) : null);
                         @endphp

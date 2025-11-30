@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 
 @section('content')
@@ -29,16 +28,25 @@
                     <td>{{ $lesson->name ?? '-' }}</td>
 
                     <td>
-                        @if($lesson->drive_link)
-                        <a href="{{ $lesson->drive_link }}" target="_blank" class="btn btn-sm btn-info">
+                        @if($lesson->slug)
+                        <a href="{{ $lesson->slug }}" target="_blank" class="btn btn-sm btn-info">
                             View File
                         </a>
                         @else
                         -
                         @endif
                     </td>
+                    <td>
+                        @if($lesson->formatted_expiration)
+                        {{ $lesson->formatted_expiration }}
+                        @if($lesson->is_expired)
+                        <span class="badge bg-danger ms-2">Expired</span>
+                        @endif
+                        @else
+                        -
+                        @endif
+                    </td>
 
-                    <td>{{ $lesson->expiration_date ? date('M d, Y', strtotime($lesson->expiration_date)) : '-' }}</td>
 
                     <td>
                         @if(!empty($lesson->status) && $lesson->status == 1)
@@ -81,11 +89,11 @@
 
             {{-- Page Numbers --}}
             @foreach ($lessons->getUrlRange(1, $lessons->lastPage()) as $page => $url)
-                @if ($page == $lessons->currentPage())
-                <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
-                @else
-                <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
-                @endif
+            @if ($page == $lessons->currentPage())
+            <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
+            @else
+            <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
+            @endif
             @endforeach
 
             {{-- Next --}}

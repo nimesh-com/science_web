@@ -47,9 +47,6 @@
                                     <a href="{{ $joinUrl }}" target="_blank" class="btn btn-sm btn-primary">
                                         Join Class
                                     </a>
-                                    <a href="" class="btn btn-sm btn-outline-secondary">
-                                        Details
-                                    </a>
                                 </div>
                             </div>
                         </div>
