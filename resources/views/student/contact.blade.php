@@ -26,7 +26,7 @@
                         <!-- Contact Form -->
                         <div class="col-md-7">
                             <h5 class="mb-3">Send a message</h5>
-                            <form action="{{ route('contact.send') }}" method="POST" autocomplete="off">
+                            <form action="" method="POST" autocomplete="off">
                                 @csrf
 
                                 <div class="form-row">
