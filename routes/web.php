@@ -9,6 +9,7 @@ use App\Http\Controllers\LMS\LMSController;
 use App\Http\Controllers\admin\LessonsController;
 use App\Http\Controllers\admin\ModuleController;
 use App\Http\Controllers\admin\CourseController;
+use App\Http\Controllers\PageController;
 
 Route::get('/',[DashboardController::class, 'index'])->name('home');
 
@@ -25,9 +26,7 @@ Route::get('/team', function () {
     return view('student/team');
 });
 
-Route::get('/courses', function () {
-    return view('student/course');
-});
+Route::get('/courses', [PageController::class, 'courses'])->name('courses');
 
 Route::get('/lms', function () {
     return view('student/LMS/live');
