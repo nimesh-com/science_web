@@ -53,23 +53,7 @@
 
                 <a href="{{ url('about') }}" class="nav-item nav-link {{ request()->is('about') ? 'active' : '' }}">About</a>
 
-                <a href="{{ url('courses') }}" class="nav-item nav-link {{ request()->is('courses') ? 'active' : '' }}">Courses</a>
-
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle 
-                    {{ request()->is('team') || request()->is('testimonial') || request()->is('404') ? 'active' : '' }}"
-                        data-bs-toggle="dropdown">
-                        Pages
-                    </a>
-
-                    <div class="dropdown-menu fade-down m-0">
-                        <a href="{{ url('team') }}" class="dropdown-item {{ request()->is('team') ? 'active' : '' }}">Our Team</a>
-
-                        <a href="{{ url('testimonial') }}" class="dropdown-item {{ request()->is('testimonial') ? 'active' : '' }}">Testimonial</a>
-
-                        <a href="{{ url('404') }}" class="dropdown-item {{ request()->is('404') ? 'active' : '' }}">404 Page</a>
-                    </div>
-                </div>
+                <a href="{{ route('courses') }}" class="nav-item nav-link {{ request()->is('courses') ? 'active' : '' }}">Courses</a>
 
                 <a href="{{ url('contact') }}" class="nav-item nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact</a>
 
