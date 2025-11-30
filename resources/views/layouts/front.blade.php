@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>eLEARNING - eLearning HTML Template</title>
+    <title>SmartScience</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{{asset('public/assets-frontend/img/favicon.png')}}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +37,8 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="{{ url('/') }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>SmartScience</h2>
+            <img src="{{ asset('public/assets-frontend/img/favicon.png') }}" alt="SmartScience Logo" class="me-2" style="height:50px; width:auto;">
+            <h2 class="m-0 text-primary d-inline-flex align-items-center"></i>SmartScience</h2>
         </a>
 
         <!-- Mobile Toggler -->
@@ -109,12 +110,11 @@
                     <a class="btn btn-link" href="">About Us</a>
                     <a class="btn btn-link" href="">Contact Us</a>
                     <a class="btn btn-link" href="">Privacy Policy</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
                     <a class="btn btn-link" href="">FAQs & Help</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>--</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Kotikawatta Road, IDH Sri Lanka</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+94 71 313 4617</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@sciencelms.com</p>
                     <div class="d-flex pt-2">
@@ -125,26 +125,9 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Gallery</h4>
-                    <div class="row g-2 pt-2">
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{asset('public/assets-frontend/img/course-1.jpg')}}" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{asset('public/assets-frontend/img/course-2.jpg')}}" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{asset('public/assets-frontend/img/course-3.jpg')}}" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{asset('public/assets-frontend/img/course-2.jpg')}}" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{asset('public/assets-frontend/img/course-3.jpg')}}" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{asset('public/assets-frontend/img/course-1.jpg')}}" alt="">
-                        </div>
+                    <h4 class="text-white mb-3">Location</h4>
+                    <div class="ratio ratio-4x3">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7039145678636!2d80.63450!3d6.90270!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25a3e3e3e3e3d%3A0x3e3e3e3e3e3e3e3e!2sKotikawatta%20Road%2C%20Sri%20Lanka!5e0!3m2!1sen!2s!4v1234567890" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
